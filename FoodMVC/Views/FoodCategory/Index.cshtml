@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FoodMVC.Models.FoodCategory>
+
+@{
+    ViewBag.Title = "Index";
+    var restaurantId = ViewBag.RestaurantId;
+}
+
+<h2>Food Categories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+       <th>
+           Actions
+       </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+       <td>
+           <a href="@Url.Action("Index", "MenuItem", new { restaurantId = restaurantId, foodCategoryId = item.Id })" class="btn btn-primary">
+               Show Menu Items
+           </a>
+       </td>
+    </tr>
+}
+
+</table>
