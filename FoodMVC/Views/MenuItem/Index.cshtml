@@ -48,7 +48,20 @@
                 Add to Cart
             </a>
         </td>
+        <td>
+            <a href="#" class="btn btn-primary" onclick="submitPostForm()">Place Order</a>
+        </td>
     </tr>
 }
 
 </table>
+
+<script>
+    function submitPostForm() {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '@Url.Action("PlaceOrder", "Order")';
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>

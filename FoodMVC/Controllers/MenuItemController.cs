@@ -8,11 +8,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace FoodMVC.Controllers
 {
-    public class MenuItemController : Controller
+    public class MenuItemController : System.Web.Mvc.Controller
     {
         private readonly HttpClient _client;
 
@@ -22,13 +23,12 @@ namespace FoodMVC.Controllers
             _client.BaseAddress = new Uri("https://localhost:44321/");
         }
 
-        public async Task<ActionResult> Index(int restaurantId, int foodCategoryId)
+        public async Task<System.Web.Mvc.ActionResult> Index(int restaurantId, int foodCategoryId)
         {
             var response = await _client.GetStringAsync($"api/MenuItem/{restaurantId}/{foodCategoryId}");
             Console.WriteLine(response);
 
             List<MenuItems> menuItems = JsonConvert.DeserializeObject<List<MenuItems>>(response);
-
             return View(menuItems);
         }
     }

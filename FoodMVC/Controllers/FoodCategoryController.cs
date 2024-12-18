@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace FoodMVC.Controllers
 {
-    public class FoodCategoryController : Controller
+    public class FoodCategoryController : System.Web.Mvc.Controller
     {
         private readonly HttpClient _client;
 
@@ -21,7 +21,7 @@ namespace FoodMVC.Controllers
             _client.BaseAddress = new Uri("https://localhost:44321/");
         }
 
-        public async Task<ActionResult> Index(int restaurantId)
+        public async Task<System.Web.Mvc.ActionResult> Index(int restaurantId)
         {
             // API URL with restaurantId as parameter
             var response = await _client.GetStringAsync($"api/FoodCategory/{restaurantId}");
